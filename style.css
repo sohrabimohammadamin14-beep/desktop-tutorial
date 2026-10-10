@@ -1,0 +1,1535 @@
+/* =========================
+   1. تنظیمات پایه
+========================= */
+
+:root {
+  --paper: #f3f0e7;
+  --paper-dark: #e7e3d8;
+  --paper-light: #faf8f2;
+  --ink: #252923;
+  --muted: #74766b;
+  --line: #d4d0c4;
+  --olive: #64765a;
+  --olive-dark: #43513c;
+  --orange: #b96745;
+  --white: #ffffff;
+
+  --page-width: 1160px;
+  --page-gutter: 28px;
+  --radius: 3px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Tahoma, Arial, sans-serif;
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+body,
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button,
+a {
+  color: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--olive);
+  color: var(--white);
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 4px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.section-shell {
+  width: min(
+    var(--page-width),
+    calc(100% - var(--page-gutter) * 2)
+  );
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 10px;
+  right: 10px;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--white);
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* =========================
+   2. سربرگ و منو
+========================= */
+
+.site-header {
+  position: relative;
+  z-index: 20;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.header-inner {
+  width: min(
+    1320px,
+    calc(100% - var(--page-gutter) * 2)
+  );
+  min-height: 84px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.brand-symbol {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  background: var(--olive-dark);
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 800;
+  direction: ltr;
+}
+
+.brand-symbol span {
+  position: absolute;
+  right: -5px;
+  bottom: -5px;
+  padding: 0 3px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: 9px;
+  line-height: 1.6;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.brand-text strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.brand-text small {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  direction: ltr;
+  text-align: right;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 28px);
+}
+
+.main-nav a {
+  padding: 8px 0;
+  color: #4f5148;
+  font-size: 12px;
+  white-space: nowrap;
+  transition: color 180ms ease;
+}
+
+.main-nav a:hover {
+  color: var(--orange);
+}
+
+.main-nav .nav-contact {
+  padding: 9px 15px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.main-nav .nav-contact:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  padding: 11px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  margin: 6px 0;
+  background: var(--ink);
+  transition: transform 180ms ease;
+}
+
+/* =========================
+   3. بخش معرفی
+========================= */
+
+.hero {
+  min-height: 600px;
+  padding-block: 72px 80px;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: center;
+  gap: clamp(36px, 7vw, 100px);
+}
+
+.hero-copy {
+  padding-block: 12px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 22px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--olive);
+  box-shadow: 0 0 0 4px rgb(100 118 90 / 13%);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(44px, 5.5vw, 76px);
+  font-weight: 900;
+  line-height: 1.35;
+  letter-spacing: -2px;
+}
+
+.hero h1 span {
+  color: var(--olive);
+}
+
+.hero-description {
+  max-width: 440px;
+  margin: 24px 0 0;
+  color: #62645a;
+  font-size: 14px;
+  line-height: 2.2;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.button {
+  min-height: 48px;
+  padding: 10px 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 12px;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.button-dark:hover {
+  background: var(--olive-dark);
+}
+
+.button span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.text-link {
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+  transition: border-color 180ms ease, color 180ms ease;
+}
+
+.text-link:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.hero-meta {
+  display: flex;
+  gap: 42px;
+  margin-top: 54px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.hero-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.meta-number {
+  font-size: 18px;
+  font-weight: 800;
+  direction: ltr;
+  text-align: right;
+}
+
+.meta-label {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+/* قاب تصویر اصلی؛ تصویر بدون برش نمایش داده می‌شود */
+
+.hero-visual {
+  min-width: 0;
+  position: relative;
+  padding: 0 0 30px 16px;
+}
+
+.image-frame {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--paper-dark);
+  border: 1px solid rgb(37 41 35 / 8%);
+}
+
+.hero-image-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+}
+
+.hero-image-frame .project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.project-image {
+  display: block;
+  max-width: 100%;
+  background: transparent;
+}
+
+.image-index {
+  position: absolute;
+  right: 14px;
+  bottom: 12px;
+  z-index: 2;
+  padding: 3px 7px;
+  background: rgb(243 240 231 / 92%);
+  color: var(--ink);
+  font-size: 9px;
+  letter-spacing: 1px;
+  direction: ltr;
+}
+
+.image-fallback {
+  width: 100%;
+  min-height: 100%;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--muted);
+}
+
+.fallback-mark {
+  margin-bottom: 12px;
+  color: var(--olive);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 900;
+  direction: ltr;
+}
+
+.image-fallback strong {
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.image-fallback p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.hero-stamp {
+  position: absolute;
+  z-index: 3;
+  left: -12px;
+  bottom: 55px;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  transform: rotate(-7deg);
+}
+
+.hero-stamp span {
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: 2px;
+  direction: ltr;
+}
+
+.hero-stamp strong {
+  color: var(--olive-dark);
+  font-size: 32px;
+  line-height: 1.3;
+}
+
+.image-note {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.note-line {
+  width: 24px;
+  height: 1px;
+  background: var(--orange);
+}
+
+/* =========================
+   4. نوار اطلاعات
+========================= */
+
+.info-strip {
+  background: var(--olive-dark);
+  color: var(--white);
+}
+
+.info-strip-inner {
+  width: min(
+    var(--page-width),
+    calc(100% - var(--page-gutter) * 2)
+  );
+  min-height: 58px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.info-strip-inner > span {
+  direction: ltr;
+}
+
+.strip-divider {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 50%;
+  background: #c6cbbd;
+}
+
+.strip-number {
+  margin-right: auto;
+  color: #d3d9cc;
+}
+
+/* =========================
+   5. عنوان بخش‌ها
+========================= */
+
+.content-section {
+  padding-block: 100px;
+}
+
+.section-heading {
+  margin-bottom: 48px;
+}
+
+.section-kicker {
+  margin: 0 0 12px;
+  color: var(--orange);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  direction: ltr;
+  text-align: right;
+}
+
+.section-heading h2,
+.contact-intro h2 {
+  margin: 0;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 900;
+  line-height: 1.5;
+  letter-spacing: -1px;
+}
+
+.section-heading h2 span,
+.contact-intro h2 span {
+  color: var(--olive);
+}
+
+/* =========================
+   6. درباره پروژه
+========================= */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(36px, 8vw, 120px);
+}
+
+.about-lead {
+  padding-top: 4px;
+}
+
+.large-copy {
+  margin: 0;
+  font-size: clamp(20px, 2.5vw, 28px);
+  line-height: 1.9;
+}
+
+.large-copy strong {
+  font-weight: 900;
+}
+
+.about-details > p {
+  margin: 0 0 18px;
+  color: #62645a;
+  font-size: 13px;
+  line-height: 2.3;
+}
+
+.project-facts {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.project-facts > div {
+  min-width: 0;
+  padding: 17px 12px 17px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.project-facts > div + div {
+  border-right: 1px solid var(--line);
+  padding-right: 16px;
+}
+
+.fact-label {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.project-facts strong {
+  font-size: 12px;
+}
+
+/* =========================
+   7. گالری تصاویر
+========================= */
+
+.gallery-section {
+  padding-block: 88px 100px;
+  background: var(--paper-light);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.gallery-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.heading-note {
+  max-width: 300px;
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.gallery-card {
+  min-width: 0;
+  padding: 0;
+  display: block;
+  background: transparent;
+  color: var(--ink);
+  text-align: right;
+  cursor: pointer;
+}
+
+.gallery-card-large {
+  grid-row: span 2;
+}
+
+.gallery-image-wrap {
+  width: 100%;
+  height: 270px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgb(37 41 35 / 8%);
+  background: var(--paper-dark);
+}
+
+.gallery-card-large .gallery-image-wrap {
+  height: 564px;
+}
+
+.gallery-image-wrap .project-image {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  object-fit: contain;
+  object-position: center;
+  transition: transform 250ms ease;
+}
+
+.gallery-card:hover .project-image {
+  transform: scale(1.035);
+}
+
+.gallery-caption {
+  min-height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.gallery-caption > span:first-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gallery-caption small {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  direction: ltr;
+  text-align: right;
+}
+
+.gallery-caption strong {
+  font-size: 13px;
+}
+
+.gallery-arrow {
+  color: var(--olive);
+  font-size: 20px;
+  transition: transform 180ms ease;
+}
+
+.gallery-card:hover .gallery-arrow {
+  transform: translate(-3px, -3px);
+}
+
+/* =========================
+   8. قطعات
+========================= */
+
+.parts-layout {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(36px, 8vw, 120px);
+}
+
+.parts-intro .large-copy {
+  margin-bottom: 20px;
+}
+
+.parts-intro > p:last-child {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 2.2;
+}
+
+.parts-list {
+  border-top: 1px solid var(--line);
+}
+
+.part-row {
+  min-height: 70px;
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.part-number {
+  color: var(--orange);
+  font-size: 11px;
+  direction: ltr;
+}
+
+.part-name {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.part-quantity {
+  padding: 4px 8px;
+  background: var(--paper-dark);
+  color: var(--muted);
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.parts-note {
+  margin: 24px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 2;
+}
+
+/* =========================
+   9. نحوه کار
+========================= */
+
+.how-section {
+  padding-block: 90px 80px;
+  background: var(--paper-dark);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-top: 1px solid #c9c5b9;
+  border-bottom: 1px solid #c9c5b9;
+}
+
+.step-card {
+  min-width: 0;
+  padding: 30px 26px 32px 20px;
+}
+
+.step-card + .step-card {
+  border-right: 1px solid #c9c5b9;
+}
+
+.step-index {
+  color: var(--orange);
+  font-size: 12px;
+  direction: ltr;
+}
+
+.step-card h3 {
+  margin: 20px 0 10px;
+  font-size: 17px;
+}
+
+.step-card p {
+  margin: 0;
+  color: #64665c;
+  font-size: 12px;
+  line-height: 2.2;
+}
+
+.how-note {
+  max-width: 720px;
+  margin: 22px 0 0;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 2;
+}
+
+/* =========================
+   10. اعضای گروه
+========================= */
+
+.team-section {
+  padding-bottom: 105px;
+}
+
+.team-intro {
+  max-width: 650px;
+  margin: -20px 0 34px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 2.2;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+}
+
+.team-member {
+  min-width: 0;
+  min-height: 190px;
+  padding: 24px;
+  border-left: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transition: background 180ms ease;
+}
+
+.team-member:hover {
+  background: rgb(255 255 255 / 28%);
+}
+
+.team-leader {
+  background: #e8e8dc;
+}
+
+.member-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.member-number {
+  color: var(--orange);
+  font-size: 12px;
+  direction: ltr;
+}
+
+.member-role-en {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: 1px;
+  direction: ltr;
+}
+
+.team-member h3 {
+  margin: 24px 0 6px;
+  font-size: 18px;
+}
+
+.team-member p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* =========================
+   11. تماس
+========================= */
+
+.contact-section {
+  padding-block: 85px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(36px, 8vw, 110px);
+}
+
+.contact-intro .section-kicker {
+  color: #d18a6b;
+}
+
+.contact-intro h2 {
+  font-size: clamp(30px, 4vw, 44px);
+}
+
+.contact-intro h2 span {
+  color: #a7b39b;
+}
+
+.contact-intro > p:last-child {
+  max-width: 370px;
+  margin-top: 20px;
+  color: #c1c2b9;
+  font-size: 12px;
+  line-height: 2.3;
+}
+
+.contact-list {
+  min-width: 0;
+}
+
+.contact-item {
+  min-width: 0;
+  min-height: 84px;
+  padding: 15px 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 24px;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #474a43;
+}
+
+.contact-item:first-child {
+  border-top: 1px solid #474a43;
+}
+
+.contact-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #51564b;
+  color: #c0cbb5;
+}
+
+.contact-icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.contact-details {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contact-details small {
+  color: #b0b3a7;
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  direction: ltr;
+  text-align: right;
+}
+
+.contact-details strong {
+  overflow-wrap: anywhere;
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.contact-arrow {
+  color: #b6c1ab;
+  font-size: 18px;
+  transition: transform 180ms ease;
+}
+
+.contact-item:hover .contact-arrow {
+  transform: translate(-3px, -3px);
+}
+
+.contact-item:hover .contact-details strong {
+  color: #c6d5ba;
+}
+
+.contact-warning {
+  margin: 18px 0 0;
+  color: #b0b3a7;
+  font-size: 10px;
+  line-height: 2;
+}
+
+/* =========================
+   12. پابرگ
+========================= */
+
+.site-footer {
+  background: #1c201b;
+  color: #c6c7be;
+}
+
+.footer-inner {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.footer-brand {
+  color: #e4e3d9;
+  font-size: 10px;
+  letter-spacing: 1px;
+  direction: ltr;
+}
+
+.footer-inner p {
+  margin: 0;
+  font-size: 10px;
+  text-align: center;
+}
+
+.back-to-top {
+  font-size: 10px;
+  transition: color 180ms ease;
+}
+
+.back-to-top:hover {
+  color: #d18a6b;
+}
+
+/* =========================
+   13. نمایش بزرگ تصویر
+========================= */
+
+.lightbox {
+  width: min(1000px, calc(100% - 28px));
+  max-width: none;
+  max-height: calc(100% - 28px);
+  padding: 16px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.lightbox::backdrop {
+  background: rgb(20 22 19 / 82%);
+  backdrop-filter: blur(3px);
+}
+
+.lightbox-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.lightbox-image {
+  width: 100%;
+  height: min(72vh, 760px);
+  object-fit: contain;
+  background: var(--paper-dark);
+}
+
+.lightbox-caption {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  text-align: center;
+}
+
+.lightbox-close {
+  position: absolute;
+  z-index: 2;
+  top: 8px;
+  left: 8px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 30px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* =========================
+   14. تبلت
+========================= */
+
+@media (max-width: 950px) {
+  :root {
+    --page-gutter: 24px;
+  }
+
+  .header-inner {
+    gap: 18px;
+  }
+
+  .main-nav {
+    gap: 14px;
+  }
+
+  .main-nav a {
+    font-size: 11px;
+  }
+
+  .hero {
+    gap: 36px;
+    min-height: 530px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 5.5vw, 60px);
+  }
+
+  .hero-meta {
+    gap: 24px;
+  }
+
+  .gallery-card-large .gallery-image-wrap {
+    height: 500px;
+  }
+
+  .gallery-image-wrap {
+    height: 238px;
+  }
+
+  .about-layout,
+  .parts-layout,
+  .contact-layout {
+    gap: 44px;
+  }
+}
+
+/* =========================
+   15. موبایل
+========================= */
+
+@media (max-width: 760px) {
+  :root {
+    --page-gutter: 19px;
+  }
+
+  html {
+    scroll-padding-top: 72px;
+  }
+
+  .header-inner {
+    min-height: 72px;
+    position: relative;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .main-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    z-index: 50;
+    padding: 12px 18px 18px;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    box-shadow: 0 12px 20px rgb(37 41 35 / 8%);
+  }
+
+  .main-nav.is-open {
+    display: flex;
+  }
+
+  .main-nav a {
+    padding: 10px 4px;
+    font-size: 13px;
+  }
+
+  .main-nav .nav-contact {
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-block: 48px 64px;
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .hero-copy {
+    padding: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 11vw, 66px);
+    line-height: 1.35;
+  }
+
+  .hero-description {
+    max-width: 540px;
+    font-size: 13px;
+  }
+
+  .hero-meta {
+    margin-top: 35px;
+  }
+
+  .hero-visual {
+    width: 100%;
+    padding: 0 0 27px 10px;
+  }
+
+  .hero-image-frame {
+    aspect-ratio: 4 / 3;
+    padding: 8px;
+  }
+
+  .hero-stamp {
+    left: -3px;
+    bottom: 49px;
+    width: 78px;
+    height: 78px;
+  }
+
+  .hero-stamp strong {
+    font-size: 25px;
+  }
+
+  .hero-stamp span {
+    font-size: 7px;
+  }
+
+  .image-note {
+    font-size: 10px;
+  }
+
+  .info-strip-inner {
+    min-height: 53px;
+    gap: 10px;
+    font-size: 8px;
+  }
+
+  .strip-number {
+    display: none;
+  }
+
+  .content-section {
+    padding-block: 70px;
+  }
+
+  .section-heading {
+    margin-bottom: 32px;
+  }
+
+  .section-heading h2,
+  .contact-intro h2 {
+    font-size: 34px;
+  }
+
+  .about-layout,
+  .parts-layout,
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .large-copy {
+    font-size: 23px;
+  }
+
+  .about-details > p {
+    font-size: 12px;
+  }
+
+  .project-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .project-facts > div {
+    padding: 12px 4px;
+  }
+
+  .project-facts > div + div {
+    padding-right: 4px;
+    border-right: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .gallery-section {
+    padding-block: 70px;
+  }
+
+  .gallery-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .heading-note {
+    margin: 0;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .gallery-card-large {
+    grid-row: auto;
+  }
+
+  .gallery-card-large .gallery-image-wrap,
+  .gallery-image-wrap {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
+  .gallery-image-wrap .project-image {
+    padding: 8px;
+  }
+
+  .gallery-caption {
+    min-height: 62px;
+  }
+
+  .parts-layout {
+    gap: 24px;
+  }
+
+  .part-row {
+    grid-template-columns: 30px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .part-name {
+    font-size: 12px;
+  }
+
+  .how-section {
+    padding-block: 70px;
+  }
+
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .step-card {
+    padding: 22px 16px;
+  }
+
+  .step-card + .step-card {
+    border-top: 1px solid #c9c5b9;
+    border-right: 0;
+  }
+
+  .step-card h3 {
+    margin-top: 12px;
+  }
+
+  .team-section {
+    padding-bottom: 75px;
+  }
+
+  .team-intro {
+    margin-top: -12px;
+    font-size: 12px;
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-member {
+    min-height: 160px;
+    padding: 21px;
+  }
+
+  .team-member h3 {
+    margin-top: 18px;
+    font-size: 16px;
+  }
+
+  .contact-section {
+    padding-block: 65px;
+  }
+
+  .contact-layout {
+    gap: 28px;
+  }
+
+  .contact-item {
+    grid-template-columns: 36px minmax(0, 1fr) 18px;
+    gap: 10px;
+  }
+
+  .contact-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .contact-details strong {
+    font-size: 11px;
+  }
+
+  .footer-inner {
+    padding-block: 20px;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+/* =========================
+   16. موبایل کوچک
+========================= */
+
+@media (max-width: 380px) {
+  :root {
+    --page-gutter: 15px;
+  }
+
+  .brand-text strong {
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: 43px;
+  }
+
+  .hero-actions {
+    gap: 16px;
+  }
+
+  .hero-meta {
+    gap: 20px;
+  }
+
+  .info-strip-inner {
+    gap: 7px;
+    font-size: 7px;
+  }
+
+  .project-facts strong {
+    font-size: 11px;
+  }
+
+  .contact-item {
+    grid-template-columns: 30px minmax(0, 1fr) 15px;
+    gap: 8px;
+  }
+
+  .contact-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .contact-icon svg {
+    width: 17px;
+    height: 17px;
+  }
+
+  .contact-details strong {
+    font-size: 10px;
+  }
+}
+
+/* احترام به تنظیم کاهش حرکت در دستگاه کاربر */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
